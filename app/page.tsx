@@ -784,7 +784,7 @@ export default function Home() {
             </div>
 
             {/* Role Switcher */}
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               <Button
                 onClick={() => setRole('donor')}
                 variant={role === 'donor' ? 'default' : 'outline'}
@@ -799,6 +799,12 @@ export default function Home() {
               >
                 Admin View
               </Button>
+              <a
+                href="/settings"
+                className="ml-2 text-sm text-gray-600 hover:text-[#2D5016] underline"
+              >
+                Settings
+              </a>
             </div>
           </div>
         </div>
