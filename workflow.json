@@ -1,0 +1,183 @@
+{
+  "workflow": {
+    "name": "Annapurna-Connect Food Rescue System",
+    "description": "Complete food rescue workflow coordinating donations from donors to NGOs",
+    "nodes": [
+      {
+        "id": "input_node",
+        "type": "Input",
+        "label": "Donor Submission",
+        "nodeCategory": "input"
+      },
+      {
+        "id": "food_rescue_coordinator",
+        "type": "Agent",
+        "label": "Food Rescue Coordinator",
+        "nodeCategory": "agent",
+        "agent_id": "69858750ab4bf65a66ad07a5",
+        "agent_type": "manager",
+        "trigger": "Submit Donation on Donor Form"
+      },
+      {
+        "id": "dispatcher_agent",
+        "type": "Agent",
+        "label": "Dispatcher Agent",
+        "nodeCategory": "agent",
+        "agent_id": "69858719e17e33c11eed19ae",
+        "agent_type": "sub-agent",
+        "trigger": "Auto (via Manager)"
+      },
+      {
+        "id": "negotiator_agent",
+        "type": "Agent",
+        "label": "Negotiator Agent",
+        "nodeCategory": "agent",
+        "agent_id": "69858734b90162af337b1e95",
+        "agent_type": "sub-agent",
+        "trigger": "Auto (via Manager)"
+      },
+      {
+        "id": "claim_handler_agent",
+        "type": "Agent",
+        "label": "Claim Handler Agent",
+        "nodeCategory": "agent",
+        "agent_id": "6985876eab4bf65a66ad07a9",
+        "agent_type": "independent",
+        "trigger": "Webhook (NGO Reply)"
+      },
+      {
+        "id": "escalation_agent",
+        "type": "Agent",
+        "label": "Escalation Agent",
+        "nodeCategory": "agent",
+        "agent_id": "69858790382ef8715224cf2b",
+        "agent_type": "independent",
+        "trigger": "Scheduled: Every 2 minutes"
+      },
+      {
+        "id": "output_node",
+        "type": "Output",
+        "label": "Workflow Complete",
+        "nodeCategory": "end"
+      }
+    ],
+    "edges": [
+      {
+        "source": "input_node",
+        "target": "food_rescue_coordinator"
+      },
+      {
+        "source": "food_rescue_coordinator",
+        "target": "dispatcher_agent"
+      },
+      {
+        "source": "food_rescue_coordinator",
+        "target": "negotiator_agent"
+      },
+      {
+        "source": "dispatcher_agent",
+        "target": "output_node"
+      },
+      {
+        "source": "negotiator_agent",
+        "target": "output_node"
+      },
+      {
+        "source": "claim_handler_agent",
+        "target": "output_node"
+      },
+      {
+        "source": "escalation_agent",
+        "target": "output_node"
+      }
+    ]
+  },
+  "agents": {
+    "dispatcher_agent": {
+      "agent_id": "69858719e17e33c11eed19ae",
+      "name": "Dispatcher Agent",
+      "description": "Queries PostgreSQL for verified NGOs within radius using Haversine formula on GPS coordinates, returns nearest 3 sorted by distance",
+      "role": "Geospatial Database Query Specialist",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "tools": ["PostgreSQL Database"],
+      "response_schema": "response_schemas/dispatcher_agent_response.json"
+    },
+    "negotiator_agent": {
+      "agent_id": "69858734b90162af337b1e95",
+      "name": "Negotiator Agent",
+      "description": "Composes and sends personalized WhatsApp/SMS alerts to selected NGOs via Twilio with donation details, distance, and expiry time",
+      "role": "NGO Communication and Alert Specialist",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": ["Twilio API (SMS/WhatsApp)"],
+      "response_schema": "response_schemas/negotiator_agent_response.json"
+    },
+    "food_rescue_coordinator": {
+      "agent_id": "69858750ab4bf65a66ad07a5",
+      "name": "Food Rescue Coordinator",
+      "description": "Orchestrates the donation broadcast workflow—coordinates geospatial querying and NGO notification, aggregates results, and updates donation status",
+      "role": "Food Rescue Workflow Manager",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "managed_agents": [
+        "69858719e17e33c11eed19ae",
+        "69858734b90162af337b1e95"
+      ],
+      "response_schema": "response_schemas/food_rescue_coordinator_response.json"
+    },
+    "claim_handler_agent": {
+      "agent_id": "6985876eab4bf65a66ad07a9",
+      "name": "Claim Handler Agent",
+      "description": "Processes incoming NGO \"YES\" responses via webhook, implements state lock for first-come-first-served, sends Google Maps directions to claimer, notifies rejected NGOs, and updates Donor with ETA",
+      "role": "Donation Claim Processing and Coordination Specialist",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "tools": ["Twilio API", "PostgreSQL Database", "Google Maps"],
+      "response_schema": "response_schemas/claim_handler_agent_response.json"
+    },
+    "escalation_agent": {
+      "agent_id": "69858790382ef8715224cf2b",
+      "name": "Escalation Agent",
+      "description": "Monitors unclaimed donations past 10-minute threshold, expands search radius by 5km, triggers new broadcast cycle, or marks as \"Failed Match\" if past expiry",
+      "role": "Donation Escalation and Retry Coordinator",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "tools": ["PostgreSQL Database"],
+      "response_schema": "response_schemas/escalation_agent_response.json"
+    }
+  },
+  "integrations": {
+    "twilio": {
+      "source": "composio",
+      "actions": ["TWILIO_SEND_SMS", "TWILIO_WHATSAPP_SEND"],
+      "used_by": ["negotiator_agent", "claim_handler_agent"]
+    },
+    "postgresql": {
+      "source": "custom",
+      "description": "Database for NGO records, donation tracking, and state management",
+      "used_by": ["dispatcher_agent", "claim_handler_agent", "escalation_agent"]
+    },
+    "google_maps": {
+      "source": "custom",
+      "description": "Generate directions URLs for NGOs to donor locations",
+      "used_by": ["claim_handler_agent"]
+    },
+    "webhook": {
+      "source": "custom",
+      "description": "Receive incoming NGO SMS/WhatsApp replies",
+      "used_by": ["claim_handler_agent"]
+    }
+  }
+}

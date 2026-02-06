@@ -1,0 +1,33 @@
+{
+  "agent_name": "Escalation Agent",
+  "agent_id": "69858790382ef8715224cf2b",
+  "test_message": "Check donation DON-2024-001 submitted 12 minutes ago with no claims. Current radius was 5km. Expand search to 10km radius and identify 3 new NGOs to contact. If past expiry time, mark as failed match.",
+  "expected_purpose": "Monitors unclaimed donations and expands search radius",
+  "timestamp": "2026-02-06T06:21:25.970841",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "escalations_processed": 1,
+      "donations_escalated": [
+        {
+          "donation_id": "DON-2024-001",
+          "original_radius_km": 5,
+          "new_radius_km": 10,
+          "time_unclaimed_minutes": 12,
+          "action_taken": "expanded_broadcast",
+          "reason": "Unclaimed for 12 minutes; escalation threshold exceeded, expanding search radius to 10km and triggering new broadcast.",
+          "new_broadcast_triggered": true
+        }
+      ],
+      "failed_matches": 0,
+      "active_escalations": 1
+    },
+    "metadata": {
+      "agent_name": "Escalation Agent",
+      "timestamp": "2024-06-13T10:31:00Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"escalations_processed\": 1,\n    \"donations_escalated\": [\n      {\n        \"donation_id\": \"DON-2024-001\",\n        \"original_radius_km\": 5,\n        \"new_radius_km\": 10,\n        \"time_unclaimed_minutes\": 12,\n        \"action_taken\": \"expanded_broadcast\",\n        \"reason\": \"Unclaimed for 12 minutes; escalation threshold exceeded, expanding search radius to 10km and triggering new broadcast.\",\n        \"new_broadcast_triggered\": true\n      }\n    ],\n    \"failed_matches\": 0,\n    \"active_escalations\": 1\n  },\n  \"metadata\": {\n    \"agent_name\": \"Escalation Agent\",\n    \"timestamp\": \"2024-06-13T10:31:00Z\"\n  }\n}"
+}

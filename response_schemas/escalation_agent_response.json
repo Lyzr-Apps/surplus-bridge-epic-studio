@@ -1,0 +1,79 @@
+{
+  "agent_name": "Escalation Agent",
+  "agent_id": "69858790382ef8715224cf2b",
+  "agent_purpose": "donation_escalation_monitoring",
+  "description": "Monitors unclaimed donations, expands search radius, triggers new broadcasts, or marks as failed",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "escalations_processed": "number",
+      "donations_escalated": [
+        {
+          "donation_id": "string",
+          "original_radius_km": "number",
+          "new_radius_km": "number",
+          "time_unclaimed_minutes": "number",
+          "action_taken": "string",
+          "reason": "string",
+          "new_broadcast_triggered": "boolean"
+        }
+      ],
+      "failed_matches": "number",
+      "active_escalations": "number"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "escalations_processed": 1,
+      "donations_escalated": [
+        {
+          "donation_id": "DON-2024-001",
+          "original_radius_km": 5,
+          "new_radius_km": 10,
+          "time_unclaimed_minutes": 12,
+          "action_taken": "expanded_broadcast",
+          "reason": "Unclaimed for 12 minutes; escalation threshold exceeded, expanding search radius to 10km and triggering new broadcast.",
+          "new_broadcast_triggered": true
+        }
+      ],
+      "failed_matches": 0,
+      "active_escalations": 1
+    },
+    "metadata": {
+      "agent_name": "Escalation Agent",
+      "timestamp": "2024-06-13T10:31:00Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:21:25.971324",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "escalations_processed": 1,
+      "donations_escalated": [
+        {
+          "donation_id": "DON-2024-001",
+          "original_radius_km": 5,
+          "new_radius_km": 10,
+          "time_unclaimed_minutes": 12,
+          "action_taken": "expanded_broadcast",
+          "reason": "Unclaimed for 12 minutes; escalation threshold exceeded, expanding search radius to 10km and triggering new broadcast.",
+          "new_broadcast_triggered": true
+        }
+      ],
+      "failed_matches": 0,
+      "active_escalations": 1
+    },
+    "metadata": {
+      "agent_name": "Escalation Agent",
+      "timestamp": "2024-06-13T10:31:00Z"
+    }
+  },
+  "test_passed": true
+}

@@ -1,0 +1,112 @@
+{
+  "agent_name": "Negotiator Agent",
+  "agent_id": "69858734b90162af337b1e95",
+  "agent_purpose": "ngo_notification",
+  "description": "Sends personalized WhatsApp/SMS alerts to NGOs via Twilio with donation details and distance information",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "notifications_sent": [
+        {
+          "ngo_id": "string",
+          "ngo_name": "string",
+          "contact_number": "string",
+          "message_sent": "string",
+          "channel": "string",
+          "twilio_message_id": "string",
+          "sent_at": "string"
+        }
+      ],
+      "total_sent": "number",
+      "donation_id": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "notifications_sent": [
+        {
+          "ngo_id": "NGO001",
+          "ngo_name": "Helping Hands",
+          "contact_number": "+911234567890",
+          "message_sent": "\ud83c\udf72 URGENT FOOD DONATION AVAILABLE\n\nFood: Ready-to-eat meals - 50 meals\nLocation: Royal Caterers\nDistance: 2.3 km from your location\nExpires: 9:00 PM (URGENT)\n\nReply YES to claim this donation. First response gets the donation.\n\nDonation ID: DON12345",
+          "channel": "whatsapp",
+          "twilio_message_id": "WAMSG001",
+          "sent_at": "2024-06-23T14:00:00Z"
+        },
+        {
+          "ngo_id": "NGO002",
+          "ngo_name": "Food For All",
+          "contact_number": "+911234567891",
+          "message_sent": "\ud83c\udf72 URGENT FOOD DONATION AVAILABLE\n\nFood: Ready-to-eat meals - 50 meals\nLocation: Royal Caterers\nDistance: 2.3 km from your location\nExpires: 9:00 PM (URGENT)\n\nReply YES to claim this donation. First response gets the donation.\n\nDonation ID: DON12345",
+          "channel": "whatsapp",
+          "twilio_message_id": "WAMSG002",
+          "sent_at": "2024-06-23T14:00:00Z"
+        },
+        {
+          "ngo_id": "NGO003",
+          "ngo_name": "Care & Share",
+          "contact_number": "+911234567892",
+          "message_sent": "\ud83c\udf72 URGENT FOOD DONATION AVAILABLE\n\nFood: Ready-to-eat meals - 50 meals\nLocation: Royal Caterers\nDistance: 2.3 km from your location\nExpires: 9:00 PM (URGENT)\n\nReply YES to claim this donation. First response gets the donation.\n\nDonation ID: DON12345",
+          "channel": "whatsapp",
+          "twilio_message_id": "WAMSG003",
+          "sent_at": "2024-06-23T14:00:00Z"
+        }
+      ],
+      "total_sent": 3,
+      "donation_id": "DON12345"
+    },
+    "metadata": {
+      "agent_name": "Negotiator Agent",
+      "timestamp": "2024-06-23T14:00:00Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:20:26.652214",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "notifications_sent": [
+        {
+          "ngo_id": "NGO001",
+          "ngo_name": "Helping Hands",
+          "contact_number": "+911234567890",
+          "message_sent": "\ud83c\udf72 URGENT FOOD DONATION AVAILABLE\n\nFood: Ready-to-eat meals - 50 meals\nLocation: Royal Caterers\nDistance: 2.3 km from your location\nExpires: 9:00 PM (URGENT)\n\nReply YES to claim this donation. First response gets the donation.\n\nDonation ID: DON12345",
+          "channel": "whatsapp",
+          "twilio_message_id": "WAMSG001",
+          "sent_at": "2024-06-23T14:00:00Z"
+        },
+        {
+          "ngo_id": "NGO002",
+          "ngo_name": "Food For All",
+          "contact_number": "+911234567891",
+          "message_sent": "\ud83c\udf72 URGENT FOOD DONATION AVAILABLE\n\nFood: Ready-to-eat meals - 50 meals\nLocation: Royal Caterers\nDistance: 2.3 km from your location\nExpires: 9:00 PM (URGENT)\n\nReply YES to claim this donation. First response gets the donation.\n\nDonation ID: DON12345",
+          "channel": "whatsapp",
+          "twilio_message_id": "WAMSG002",
+          "sent_at": "2024-06-23T14:00:00Z"
+        },
+        {
+          "ngo_id": "NGO003",
+          "ngo_name": "Care & Share",
+          "contact_number": "+911234567892",
+          "message_sent": "\ud83c\udf72 URGENT FOOD DONATION AVAILABLE\n\nFood: Ready-to-eat meals - 50 meals\nLocation: Royal Caterers\nDistance: 2.3 km from your location\nExpires: 9:00 PM (URGENT)\n\nReply YES to claim this donation. First response gets the donation.\n\nDonation ID: DON12345",
+          "channel": "whatsapp",
+          "twilio_message_id": "WAMSG003",
+          "sent_at": "2024-06-23T14:00:00Z"
+        }
+      ],
+      "total_sent": 3,
+      "donation_id": "DON12345"
+    },
+    "metadata": {
+      "agent_name": "Negotiator Agent",
+      "timestamp": "2024-06-23T14:00:00Z"
+    }
+  },
+  "test_passed": true
+}

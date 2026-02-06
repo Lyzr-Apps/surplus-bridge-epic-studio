@@ -1,0 +1,114 @@
+{
+  "agent_name": "Dispatcher Agent",
+  "agent_id": "69858719e17e33c11eed19ae",
+  "agent_purpose": "geospatial_ngo_query",
+  "description": "Queries PostgreSQL for verified NGOs within radius using Haversine formula, returns nearest 3 sorted by distance",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "nearest_ngos": [
+        {
+          "ngo_id": "string",
+          "ngo_name": "string",
+          "contact_number": "string",
+          "distance_km": "number",
+          "latitude": "number",
+          "longitude": "number"
+        }
+      ],
+      "search_radius_km": "number",
+      "donor_coordinates": {
+        "lat": "number",
+        "lng": "number"
+      }
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "nearest_ngos": [
+        {
+          "ngo_id": "NGO10215",
+          "ngo_name": "Prayas Juvenile Aid Centre",
+          "contact_number": "+91-11-25435677",
+          "distance_km": 2.8,
+          "latitude": 28.6197,
+          "longitude": 77.2191
+        },
+        {
+          "ngo_id": "NGO10082",
+          "ngo_name": "Goonj",
+          "contact_number": "+91-11-41401216",
+          "distance_km": 6.5,
+          "latitude": 28.5794,
+          "longitude": 77.2171
+        },
+        {
+          "ngo_id": "NGO10104",
+          "ngo_name": "Smile Foundation",
+          "contact_number": "+91-11-43123700",
+          "distance_km": 7.1,
+          "latitude": 28.6296,
+          "longitude": 77.1726
+        }
+      ],
+      "search_radius_km": 10,
+      "donor_coordinates": {
+        "lat": 28.6139,
+        "lng": 77.209
+      }
+    },
+    "metadata": {
+      "agent_name": "Dispatcher Agent",
+      "timestamp": "2024-06-13T07:58:36Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:20:05.301256",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "nearest_ngos": [
+        {
+          "ngo_id": "NGO10215",
+          "ngo_name": "Prayas Juvenile Aid Centre",
+          "contact_number": "+91-11-25435677",
+          "distance_km": 2.8,
+          "latitude": 28.6197,
+          "longitude": 77.2191
+        },
+        {
+          "ngo_id": "NGO10082",
+          "ngo_name": "Goonj",
+          "contact_number": "+91-11-41401216",
+          "distance_km": 6.5,
+          "latitude": 28.5794,
+          "longitude": 77.2171
+        },
+        {
+          "ngo_id": "NGO10104",
+          "ngo_name": "Smile Foundation",
+          "contact_number": "+91-11-43123700",
+          "distance_km": 7.1,
+          "latitude": 28.6296,
+          "longitude": 77.1726
+        }
+      ],
+      "search_radius_km": 10,
+      "donor_coordinates": {
+        "lat": 28.6139,
+        "lng": 77.209
+      }
+    },
+    "metadata": {
+      "agent_name": "Dispatcher Agent",
+      "timestamp": "2024-06-13T07:58:36Z"
+    }
+  },
+  "test_passed": true
+}

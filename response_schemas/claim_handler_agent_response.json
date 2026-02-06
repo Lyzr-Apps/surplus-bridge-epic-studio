@@ -1,0 +1,76 @@
+{
+  "agent_name": "Claim Handler Agent",
+  "agent_id": "6985876eab4bf65a66ad07a9",
+  "agent_purpose": "donation_claim_processing",
+  "description": "Processes NGO claim responses with state locking, sends directions, and coordinates notifications",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "donation_id": "string",
+      "claim_status": "string",
+      "claiming_ngo": {
+        "ngo_id": "string",
+        "ngo_name": "string",
+        "contact_number": "string",
+        "estimated_eta_minutes": "number"
+      },
+      "directions_sent": "boolean",
+      "google_maps_url": "string",
+      "rejected_ngos_notified": "number",
+      "donor_notified": "boolean",
+      "claim_timestamp": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "donation_id": "DON-2024-001",
+      "claim_status": "accepted",
+      "claiming_ngo": {
+        "ngo_id": "HOPEFOUND-001",
+        "ngo_name": "Hope Foundation",
+        "contact_number": "+911234567890",
+        "estimated_eta_minutes": 11
+      },
+      "directions_sent": true,
+      "google_maps_url": "https://www.google.com/maps/dir/?api=1&origin=28.5500,77.4000&destination=28.5355,77.3910",
+      "rejected_ngos_notified": 3,
+      "donor_notified": true,
+      "claim_timestamp": "2024-06-16T13:15:35Z"
+    },
+    "metadata": {
+      "agent_name": "Claim Handler Agent",
+      "timestamp": "2024-06-16T13:15:35Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:21:17.751686",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "donation_id": "DON-2024-001",
+      "claim_status": "accepted",
+      "claiming_ngo": {
+        "ngo_id": "HOPEFOUND-001",
+        "ngo_name": "Hope Foundation",
+        "contact_number": "+911234567890",
+        "estimated_eta_minutes": 11
+      },
+      "directions_sent": true,
+      "google_maps_url": "https://www.google.com/maps/dir/?api=1&origin=28.5500,77.4000&destination=28.5355,77.3910",
+      "rejected_ngos_notified": 3,
+      "donor_notified": true,
+      "claim_timestamp": "2024-06-16T13:15:35Z"
+    },
+    "metadata": {
+      "agent_name": "Claim Handler Agent",
+      "timestamp": "2024-06-16T13:15:35Z"
+    }
+  },
+  "test_passed": true
+}

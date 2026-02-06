@@ -1,0 +1,103 @@
+{
+  "agent_name": "Food Rescue Coordinator",
+  "agent_id": "69858750ab4bf65a66ad07a5",
+  "agent_purpose": "donation_broadcast_orchestration",
+  "description": "Manager agent that orchestrates geospatial NGO queries and notification broadcasts for food donations",
+  "response_schema": {
+    "status": "string",
+    "result": {
+      "donation_id": "string",
+      "workflow_stage": "string",
+      "ngos_found": "number",
+      "notifications_sent": "number",
+      "nearest_ngos": [
+        {
+          "ngo_id": "string",
+          "ngo_name": "string",
+          "distance_km": "number",
+          "notified": "boolean"
+        }
+      ],
+      "donation_status": "string",
+      "next_action": "string"
+    },
+    "metadata": {
+      "agent_name": "string",
+      "timestamp": "string"
+    }
+  },
+  "example_response": {
+    "status": "success",
+    "result": {
+      "donation_id": "AUTOGEN_TAJBNQ20240607",
+      "workflow_stage": "completed",
+      "ngos_found": 3,
+      "notifications_sent": 3,
+      "nearest_ngos": [
+        {
+          "ngo_id": "NGO1024",
+          "ngo_name": "Helping Hands Foundation",
+          "distance_km": 2.8,
+          "notified": true
+        },
+        {
+          "ngo_id": "NGO1107",
+          "ngo_name": "Uplift Nutrition Mission",
+          "distance_km": 4.5,
+          "notified": true
+        },
+        {
+          "ngo_id": "NGO1193",
+          "ngo_name": "Meals Outreach Trust",
+          "distance_km": 5.1,
+          "notified": true
+        }
+      ],
+      "donation_status": "broadcasted",
+      "next_action": "Monitor NGO responses, inform donor when a claim is received, and facilitate logistics for pickup before 10 PM."
+    },
+    "metadata": {
+      "agent_name": "Food Rescue Coordinator",
+      "timestamp": "2024-06-07T16:00:06Z"
+    }
+  },
+  "is_actual_tested": true,
+  "test_timestamp": "2026-02-06T06:21:05.729406",
+  "test_message_used": "Hello, provide a sample response",
+  "actual_test_response": {
+    "status": "success",
+    "result": {
+      "donation_id": "AUTOGEN_TAJBNQ20240607",
+      "workflow_stage": "completed",
+      "ngos_found": 3,
+      "notifications_sent": 3,
+      "nearest_ngos": [
+        {
+          "ngo_id": "NGO1024",
+          "ngo_name": "Helping Hands Foundation",
+          "distance_km": 2.8,
+          "notified": true
+        },
+        {
+          "ngo_id": "NGO1107",
+          "ngo_name": "Uplift Nutrition Mission",
+          "distance_km": 4.5,
+          "notified": true
+        },
+        {
+          "ngo_id": "NGO1193",
+          "ngo_name": "Meals Outreach Trust",
+          "distance_km": 5.1,
+          "notified": true
+        }
+      ],
+      "donation_status": "broadcasted",
+      "next_action": "Monitor NGO responses, inform donor when a claim is received, and facilitate logistics for pickup before 10 PM."
+    },
+    "metadata": {
+      "agent_name": "Food Rescue Coordinator",
+      "timestamp": "2024-06-07T16:00:06Z"
+    }
+  },
+  "test_passed": true
+}

@@ -1,0 +1,50 @@
+{
+  "agent_name": "Dispatcher Agent",
+  "agent_id": "69858719e17e33c11eed19ae",
+  "test_message": "Find nearest 3 verified NGOs within 10km radius of coordinates 28.6139, 77.2090 (New Delhi). Return NGO name, phone, distance, and GPS coordinates sorted by proximity.",
+  "expected_purpose": "Geospatial query specialist - finds nearest 3 NGOs using Haversine formula",
+  "timestamp": "2026-02-06T06:20:05.300611",
+  "is_valid_json": true,
+  "validation_errors": [],
+  "actual_response": {
+    "status": "success",
+    "result": {
+      "nearest_ngos": [
+        {
+          "ngo_id": "NGO10215",
+          "ngo_name": "Prayas Juvenile Aid Centre",
+          "contact_number": "+91-11-25435677",
+          "distance_km": 2.8,
+          "latitude": 28.6197,
+          "longitude": 77.2191
+        },
+        {
+          "ngo_id": "NGO10082",
+          "ngo_name": "Goonj",
+          "contact_number": "+91-11-41401216",
+          "distance_km": 6.5,
+          "latitude": 28.5794,
+          "longitude": 77.2171
+        },
+        {
+          "ngo_id": "NGO10104",
+          "ngo_name": "Smile Foundation",
+          "contact_number": "+91-11-43123700",
+          "distance_km": 7.1,
+          "latitude": 28.6296,
+          "longitude": 77.1726
+        }
+      ],
+      "search_radius_km": 10,
+      "donor_coordinates": {
+        "lat": 28.6139,
+        "lng": 77.209
+      }
+    },
+    "metadata": {
+      "agent_name": "Dispatcher Agent",
+      "timestamp": "2024-06-13T07:58:36Z"
+    }
+  },
+  "raw_response": "{\n  \"status\": \"success\",\n  \"result\": {\n    \"nearest_ngos\": [\n      {\n        \"ngo_id\": \"NGO10215\",\n        \"ngo_name\": \"Prayas Juvenile Aid Centre\",\n        \"contact_number\": \"+91-11-25435677\",\n        \"distance_km\": 2.8,\n        \"latitude\": 28.6197,\n        \"longitude\": 77.2191\n      },\n      {\n        \"ngo_id\": \"NGO10082\",\n        \"ngo_name\": \"Goonj\",\n        \"contact_number\": \"+91-11-41401216\",\n        \"distance_km\": 6.5,\n        \"latitude\": 28.5794,\n        \"longitude\": 77.2171\n      },\n      {\n        \"ngo_id\": \"NGO10104\",\n        \"ngo_name\": \"Smile Foundation\",\n        \"contact_number\": \"+91-11-43123700\",\n        \"distance_km\": 7.1,\n        \"latitude\": 28.6296,\n        \"longitude\": 77.1726\n      }\n    ],\n    \"search_radius_km\": 10,\n    \"donor_coordinates\": {\n      \"lat\": 28.6139,\n      \"lng\": 77.2090\n    }\n  },\n  \"metadata\": {\n    \"agent_name\": \"Dispatcher Agent\",\n    \"timestamp\": \"2024-06-13T07:58:36Z\"\n  }\n}"
+}

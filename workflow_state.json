@@ -1,0 +1,46 @@
+{
+  "workflow_name": "Annapurna-Connect Food Rescue System",
+  "created_at": "2026-02-06T00:00:00Z",
+  "agents": {
+    "dispatcher_agent": {
+      "agent_id": "69858719e17e33c11eed19ae",
+      "name": "Dispatcher Agent",
+      "type": "sub-agent",
+      "status": "active",
+      "manager": "food_rescue_coordinator"
+    },
+    "negotiator_agent": {
+      "agent_id": "69858734b90162af337b1e95",
+      "name": "Negotiator Agent",
+      "type": "sub-agent",
+      "status": "active",
+      "manager": "food_rescue_coordinator"
+    },
+    "food_rescue_coordinator": {
+      "agent_id": "69858750ab4bf65a66ad07a5",
+      "name": "Food Rescue Coordinator",
+      "type": "manager",
+      "status": "active",
+      "managed_agents": [
+        "69858719e17e33c11eed19ae",
+        "69858734b90162af337b1e95"
+      ]
+    },
+    "claim_handler_agent": {
+      "agent_id": "6985876eab4bf65a66ad07a9",
+      "name": "Claim Handler Agent",
+      "type": "independent",
+      "status": "active",
+      "trigger": "webhook"
+    },
+    "escalation_agent": {
+      "agent_id": "69858790382ef8715224cf2b",
+      "name": "Escalation Agent",
+      "type": "independent",
+      "status": "active",
+      "trigger": "scheduled"
+    }
+  },
+  "total_agents": 5,
+  "workflow_status": "complete"
+}
